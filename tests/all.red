@@ -2,11 +2,20 @@ Red []
 
 #include %../test.red
 
-test "example" [
-	it "is TRUE" [true]
-	it "is TRUE" [false]
+test "blocks" [
+	"pass on true" [
+		true
+	]
 
-	test "nested" [
-		it "is TRUE" [true]
+	"fail on false" [
+		false ; will fail
+	]
+]
+
+foo: "foo"
+
+test "globals" [
+	"are available" [
+		foo = "foo" ; consider copying if any work is done
 	]
 ]

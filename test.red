@@ -6,33 +6,22 @@ Red [
 	}
 ]
 
--test: context [
-	-rules: [
-    set action  ['test | 'it]
-    set message [string!]
-    set code    block!
+rules-for-test: [
+	set subtitle string!
+	set code     block!
 
-    (
-    	switch action [
-    		test [
-    			do self/run
-    		]
-
-    		it [
-    			either do code [ prin "." ] [ prin "x" ]
-    		]
-    	]
-  	)
-	]
-
-	run: [
-		parse code [some -rules]
-	]
+	(
+		either do code [ prin "." ] [ prin "x" ]
+	)
 ]
 
 test: func [
-	message [string!]
-	code    [block!]
-] compose [
-	(-test/run)
+	title [string!]
+	code  [block!]
+] [
+	prin [title ""]
+
+	parse code [some rules-for-test]
+
+	print "" ; ends each section with a new line
 ]
